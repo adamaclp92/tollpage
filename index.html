@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Ragó Ádám">
+
+  <title>Beadandó</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">Nemzeti útdíjfizetési szolgáltató Zrt.</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link text-white" href="index.php?page=categories">Kategóriák</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link text-white" href="index.php?page=licenseplates">Rendszámok</a>
+          </li>
+        </ul>
+
+        <?php
+          if(isset($_SESSION['login_id'])) {
+            print '
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link text-white" href="index.php?page=countries">Ország karbantartó</a>
+          </li>
+        </ul>
+        ';}
+        ?>  
+
+        <ul class="navbar-nav ml-auto">
+          <?php
+          if(!isset($_SESSION['login_id'])) {
+            print '
+				  <li class="nav-item ">
+					<a class="nav-link text-white" href="index.php?page=login">Bejelentkezés</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="index.php?page=reg">Regisztráció</a>
+				  </li>';
+        }else{
+          print '
+          <li class="nav-item">
+            <a class="nav-link text-white" href="inc/logout.php" onclick="return confirm(answer);">Kijelentkezés</a>
+            </li>
+          ';
+
+          print '
+          <li class="nav-item">
+            <a class="nav-link text-warning font-weight-bold">Bejelentkezve, mint: ' . $_SESSION['login_user'] . '</a>
+            </li>' ;
+        
+        } 
+       ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <?php include("inc/$content"); ?>
+  </div>
+
+
+
+    <!-- Content Row -->
+
+  <!-- Footer -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type=text/javascript>
+    var answer = "Biztosan ki szeretnél jelentkezni?";
+  </script>
+
+</body>
+
+</html>
