@@ -14,18 +14,22 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <link href="css/style.css" rel="stylesheet">
-
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://kit.fontawesome.com/812fb0504e.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-primary bg-primary fixed-top">
+  <nav class="navbar navbar-expand-lg fixed-top" id="navi">
+    <img src="assets/nuszlogo_hun.png" alt="Logo" style="height: 50px;">
+    <a class="navbar-brand text-white ml-4" href="index.php?page=homepage">Nemzeti útdíjfizetési szolgáltató Zrt.</a>
     <div class="container">
-      <a class="navbar-brand text-white" href="#">Nemzeti útdíjfizetési szolgáltató Zrt.</a>
+
       <div class="collapse navbar-collapse" id="navbarResponsive">
 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav">
           <li class="nav-item ">
             <a class="nav-link text-white" href="index.php?page=categories">Kategóriák</a>
           </li>
@@ -74,16 +78,34 @@
     </div>
   </nav>
 
+
+
+  
+
+   <main>
   <!-- Page Content -->
   <div class="container">
     <?php include("inc/$content"); ?>
   </div>
 
-
+   </main> 
+  
 
     <!-- Content Row -->
 
-  <!-- Footer -->
+   <!-- Footer -->
+   <footer id="footer">
+    <div class="container ">
+      <p class="m-0 mt-3 text-center text-white">Minden jog fenntartva. &copy; Herczeg Ferenc 2021</p>
+      <div id="icons">
+        <a href="https://www.facebook.com/ferenc.herczeg.904" target="_blank"><i class="fab fa-facebook-f mr-2" style="font-size:40px;color:blue"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"  style="font-size:40px; color: red;"></i></a>
+  
+      </div>
+    </div>
+    <!-- /.container -->
+  </footer>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
