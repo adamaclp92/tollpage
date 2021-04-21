@@ -1,9 +1,12 @@
 <?php
+	//session kezdés
 	session_start();
+
+	//adatbázis kapcsolódás, és jumping metódus
 	include("inc/_dbconnect.php");
 	include("inc/_jumping.php");
 	
-	
+	//kapott page switch-vel történő irányítása
 	if(isset($_GET['page'])) {
 		switch($_GET['page']) {
 			case 'login'	: $content='login.html'; break;
@@ -20,9 +23,10 @@
 			case 'countrydelete'	: $content='countrydelete.php'; break;
 			default: $content='homepage.html';
 		}
+		//ha nincs beállítva page, akkor kezdőlap
 	} else {
 		$content='homepage.html';
 	}
-		
+	//alapértelmezetten az index.html betöltése
 	include("index.html");
 ?>

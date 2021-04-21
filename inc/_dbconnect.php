@@ -1,4 +1,5 @@
 <?php
+//Adatbázis kapcsolódás
 	$server="localhost";
 	$user="root";
 	$password="";

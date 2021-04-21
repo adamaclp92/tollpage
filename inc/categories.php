@@ -1,24 +1,33 @@
 <?php
 
+//Ha be vagyunk jelentkezve, akkor fut le
   if(isset($_SESSION['login_id'])) {
 
+	//Ha a kategória hozzáadása gombra rákattintunk, akkor fut le
 	if(isset($_POST['addCategory'])) {
 		
+		//kép változóba tárolása
 		$picturename=$_FILES['picture']['name'];
+		
+		//adatbázisba szúrás
 		mysqli_query($con,"INSERT INTO categories VALUES 
 		('','$_POST[name]','$_POST[description]','$picturename')");	
 
-
+		//kép eltárolása
 		move_uploaded_file($_FILES['picture']['tmp_name'],"assets/$picturename");	
+
+		//alert 
 		echo '<script type="text/javascript">';
 		echo ' alert("Sikeres hozzáadás!")'; 
 		echo '</script>';
+
+		//oldal frissítése
 		jumping("index.php?page=categories",0);
 		
 	} else {
-	
-		print '
-			<h1 class="mb-4"> Kategória hozzáadása </h1>
+		//Nincs a kategória hozzáadásra kattintva -> form (név, leírás, kép, hozzáadás gomb)
+		print '<br>
+			<h1 class="mb-4 font-weight-light"> Kategória hozzáadása </h1>
 			<form action="index.php?page=categories" method="POST" 
 			enctype="multipart/form-data">
 			  <div class="form-group">
@@ -37,11 +46,15 @@
 			  </div>
 			  <button type="submit" name="addCategory" class="btn btn-success">Kategória hozzáadása</button>
 			</form><br><br>';
-
   }
 }
-
+	//kategória tábla lekérdezés
 	$result=mysqli_query($con,"SELECT * FROM categories");
+
+	print" <br>
+	<h1 class=\"font-weight-light\">Kategóriák</h1>";
+
+	//kategóriák listázása (kép, név, leírás)
 	while($row=mysqli_fetch_assoc($result)) {
 
 		print "    
@@ -57,6 +70,7 @@
       </div>
       </div>";
 
+	  //ha be vagyunk jelentkezve, akkor megjelenik a módosítás és törlés gomb
       if(isset($_SESSION['login_id'])) {
       print"
       <div style=\"margin-left: 190px; margin-bottom: 100px;\">
@@ -65,7 +79,6 @@
 	  <a class=\"btn btn-danger\" 
 		href=\"index.php?page=categorydelete&id=$row[id]\" onclick=\"return confirm('Biztosan törölni akarod a kategóriát?');\">Törlés</a>
 	  </div>
-
 		";
       }
 	}
